@@ -33,10 +33,10 @@ pipeline {
         stage('Plan') {
             steps {
                 bat '@echo %cd% && cd terraform\\aws-instance-first-script && terraform init -input=false'
-                bat '@echo %cd% && cd terraform\\aws-instance-first-script && terraform workspace new $params.environment'
-                bat '@echo %cd% && cd terraform\\aws-instance-first-script && terraform workspace select $params.environment'
-                bat "@echo %cd% && cd terraform\\aws-instance-first-script && terraform plan -input=false -out tfplan "
-                bat '@echo %cd% && cd terraform\\aws-instance-first-script && terraform show -no-color tfplan > tfplan.txt'
+                bat "@echo %cd% && cd terraform\\aws-instance-first-script && terraform workspace new ${params.environment}"
+                bat "@echo %cd% && cd terraform\\aws-instance-first-script && terraform workspace select ${params.environment}"
+                bat "@echo %cd% && cd terraform\\aws-instance-first-script && terraform plan -input=false -out tfplan"
+                bat "@echo %cd% && cd terraform\\aws-instance-first-script && terraform show -no-color tfplan > tfplan.txt"
             }
         }
         stage('Approval') {
